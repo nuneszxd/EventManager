@@ -1,10 +1,20 @@
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
 public class User {
 
     private int idade;
     private String name;
     private String sobrenome;
     private String email;
-    private int telefone;
+    private Long telefone;
+
+    private ArrayList<Events> myEvents;
+
+    public User() {
+        myEvents = new ArrayList<Events>();
+    }
 
     public int getIdade() {
         return idade;
@@ -38,14 +48,29 @@ public class User {
         this.email = email;
     }
 
-    public int getTelefone() {
+    public Long getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(Long telefone) {
         this.telefone = telefone;
     }
 
+    public ArrayList<Events> getMyEvents() {
+        return myEvents;
+    }
 
+    public void addEventToUser(Events event) {
+        myEvents.add(event);
+    }
 
+    public void listMyEvents() {
+        if (myEvents.isEmpty()) {
+            System.out.println(name + " não participa de nenhum evento ainda.");
+        } else {
+            for (Events event : myEvents) {
+                System.out.println(event.getNameEvent() + " - " + event.getCategoria() + " - " + event.getHorario());
+            }
+        }
+    }
 }
